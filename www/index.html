@@ -64,6 +64,11 @@
 			});
 			
 			document.addEventListener("resume", onResume, false);
+			document.addEventListener("backbutton", onBackKeyDown, false);
+
+			function onBackKeyDown() {
+				alert("veuillez utiliser le bouton 'retour à l'accueil'");
+			}
 
 			function onResume() 
 			{
