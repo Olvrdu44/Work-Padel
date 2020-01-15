@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="fr.rainetcom.gestionsports" version="1.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="fr.rainetcom.workandpadel" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
@@ -35,9 +35,9 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
-    <name>Gestion sports</name>
+    <name>WORK AND PADEL</name>
     <description>
-        Outil pour gérer votre club de sport de A à Z.
+        Réservez vos terrains, ajoutez-vous à des parties et participez aux animations
     </description>
     <author email="contact@rainetcom.fr" href="http://www.rainetcom.fr">
         Team RainetCom
@@ -60,6 +60,24 @@
     <config-file mode="replace" parent="NSCameraUsageDescription" platform="ios">
         <string>L'application aimerait accéder à la caméra pour vous permettre de modifier votre photo de profil</string>
     </config-file>
+    <gap:config-file parent="NSPhotoLibraryUsageDescription" platform="ios">
+        <string>L'application aimerait accéder à la galerie pour vous permettre de modifier votre photo de profil</string>
+    </gap:config-file>
+    <gap:config-file overwrite="true" parent="NSCameraUsageDescription" platform="ios">
+        <string>L'application aimerait accéder à la camera pour pourvoir vous permettre de modifier votre photo de profil</string>
+    </gap:config-file>
+    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
+        <string>L'application aimerait accéder à la galerie pour vous permettre de modifier votre photo de profil</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+        <string>L'application aimerait accéder à la caméra pour vous permettre de modifier votre photo de profil</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>need location access to find things nearby</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
+        <string>need photo library access to save pictures there</string>
+    </edit-config>
     <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
@@ -85,4 +103,5 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
 </widget>
