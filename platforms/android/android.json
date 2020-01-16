@@ -164,6 +164,14 @@
                         }
                     ]
                 }
+            },
+            "*-Info.plist": {
+                "parents": {
+                    "NSPhotoLibraryUsageDescription": [
+                        {
+                            "xml": "<string>L'application aimerait accéder à la galerie pour vous permettre de modifier votre photo de profil</string>",
+                            "count": 1,
+                            "mode": "merge",
                             "id": "config.xml"
                         }
                     ],

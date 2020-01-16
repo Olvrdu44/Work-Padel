@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="img-src * 'self' data:; default-src * 'self' gap: wss: ws: ; style-src 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
+    <meta http-equiv="Content-Security-Policy" content="img-src * 'self' data:; default-src * 'self' gap: wss: ws: ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Gestion sports</title>
 </head>
@@ -40,7 +40,8 @@
 					
 					var playerid = state.to.userId;
 					window.plugins.OneSignal.sendTag("playerid", playerid);
-					start(playerid);
+					Exit(playerid);
+					
 				}
 				console.log("Push Subscription state changed: " + JSON.stringify(state));
 			});
@@ -55,51 +56,26 @@
 				alert(' player id: ' + status.subscriptionStatus.userId);*/
 				var playerid = status.subscriptionStatus.userId;
 				var statutnotif = status.subscriptionStatus.userSubscriptionSetting;
-				start(playerid);
+				
+				if(statutnotif == true && playerid != 'null')
+				{
+					Exit(playerid);
+				}
 			});
 			
 			document.addEventListener("resume", onResume, false);
-			document.addEventListener("backbutton", onBackKeyDown, false);
-
-			function onBackKeyDown() {
-				alert("veuillez utiliser le bouton 'retour à l'accueil'");
-			}
 
 			function onResume() 
 			{
 				location.reload(true);
 			}
-			
-			function start(playerid){
-				$.ajax({
-					url : 'https://www.gestion-sports.com/gestion-sports/application/index.php',
-					type : 'GET', // Le type de la requête HTTP, ici devenu POST
-					data:'club=workandpadel' + 
-						'&playerid=' + playerid, 
-					dataType : 'html',
-					success: function (html) 
-					{
-						$("#content").html(html);
-					},
-					error: function(resultat, statut, erreur) {
-						$("html, body").animate({scrollTop: 0},"slow");
-						$(".alert_connexion_error").show('Slide');
-						$(".alert_connexion_error").html('Une erreur est survenue veuillez réessayer')
-					}
-				});
-			}
-			start();
+		}
+		function Exit(playerid)
+		{
+			var ref = cordova.InAppBrowser.open('https://www.gestion-sports.com/gestion-sports/application/index.php?club=workandpadel&playerid=' + playerid , '_blank', 'location=no,hardwareback=no,toolbar=no, disallowoverscroll=yes, suppressesIncrementalRendering=yes, zoom=no');
 		}
 
-
-		
 		document.addEventListener("deviceready", onDeviceReady, false);
-		
 		</script>
-		
-		<div id="content"></div>
-		
-		
 </body>
-
 </html>
